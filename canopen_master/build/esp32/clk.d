@@ -1,0 +1,230 @@
+clk.o: /home/taoyeah/esp/esp-idf/components/esp32/clk.c \
+ /home/taoyeah/esp/esp-idf/components/newlib/include/stdint.h \
+ /home/taoyeah/esp/esp-idf/components/newlib/include/machine/_default_types.h \
+ /home/taoyeah/esp/esp-idf/components/newlib/include/sys/features.h \
+ /home/taoyeah/esp/esp-idf/components/newlib/include/sys/_intsup.h \
+ /home/taoyeah/esp/esp-idf/components/newlib/include/sys/cdefs.h \
+ /home/taoyeah/esp/esp-idf/components/newlib/include/sys/time.h \
+ /home/taoyeah/esp/esp-idf/components/newlib/include/_ansi.h \
+ /home/taoyeah/esp/esp-idf/components/newlib/include/newlib.h \
+ /home/taoyeah/esp/esp-idf/components/newlib/include/sys/config.h \
+ /home/taoyeah/esp/esp-idf/components/newlib/include/machine/ieeefp.h \
+ /home/taoyeah/esp/esp-idf/components/esp32/include/xtensa/config/core-isa.h \
+ /home/taoyeah/esp/esp-idf/components/newlib/include/sys/types.h \
+ /home/taoyeah/esp/esp-idf/components/newlib/include/machine/_types.h \
+ /home/taoyeah/esp/esp-idf/components/newlib/include/sys/_types.h \
+ /home/taoyeah/esp/esp-idf/components/newlib/include/sys/lock.h \
+ /home/taoyeah/esp/esp-idf/components/newlib/include/machine/types.h \
+ /home/taoyeah/esp/esp-idf/components/newlib/include/sys/sched.h \
+ /home/taoyeah/esp/esp-idf/components/newlib/include/sys/param.h \
+ /home/taoyeah/esp/esp-idf/components/newlib/include/sys/syslimits.h \
+ /home/taoyeah/esp/esp-idf/components/newlib/include/machine/endian.h \
+ /home/taoyeah/esp/esp-idf/components/newlib/include/machine/param.h \
+ /home/taoyeah/esp/esp-idf/examples/peripherals/can/can_network/can_network_master/build/include/sdkconfig.h \
+ /home/taoyeah/esp/esp-idf/components/esp32/include/esp_attr.h \
+ /home/taoyeah/esp/esp-idf/components/log/include/esp_log.h \
+ /home/taoyeah/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
+ /home/taoyeah/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
+ /home/taoyeah/esp/esp-idf/components/esp32/include/esp_assert.h \
+ /home/taoyeah/esp/esp-idf/components/newlib/platform_include/assert.h \
+ /home/taoyeah/esp/esp-idf/components/newlib/include/stdlib.h \
+ /home/taoyeah/esp/esp-idf/components/newlib/include/_ansi.h \
+ /home/taoyeah/esp/esp-idf/components/newlib/include/sys/reent.h \
+ /home/taoyeah/esp/esp-idf/components/newlib/include/machine/stdlib.h \
+ /home/taoyeah/esp/esp-idf/components/newlib/include/alloca.h \
+ /home/taoyeah/esp/esp-idf/components/newlib/include/assert.h \
+ /home/taoyeah/esp/esp-idf/components/log/include/esp_log_internal.h \
+ /home/taoyeah/esp/esp-idf/components/esp32/include/esp_clk.h \
+ /home/taoyeah/esp/esp-idf/components/esp32/esp_clk_internal.h \
+ /home/taoyeah/esp/esp-idf/components/esp32/include/rom/uart.h \
+ /home/taoyeah/esp/esp-idf/components/esp32/include/esp_types.h \
+ /home/taoyeah/esp/esp-idf/components/esp32/include/rom/ets_sys.h \
+ /home/taoyeah/esp/esp-idf/components/soc/esp32/include/soc/uart_reg.h \
+ /home/taoyeah/esp/esp-idf/components/soc/esp32/include/soc/soc.h \
+ /home/taoyeah/esp/esp-idf/components/esp32/include/rom/rtc.h \
+ /home/taoyeah/esp/esp-idf/components/soc/esp32/include/soc/rtc.h \
+ /home/taoyeah/esp/esp-idf/components/soc/include/soc/rtc_wdt.h \
+ /home/taoyeah/esp/esp-idf/components/soc/esp32/include/soc/rtc_cntl_reg.h \
+ /home/taoyeah/esp/esp-idf/components/esp32/include/esp_err.h \
+ /home/taoyeah/esp/esp-idf/components/newlib/include/stdio.h \
+ /home/taoyeah/esp/esp-idf/components/newlib/include/sys/stdio.h \
+ /home/taoyeah/esp/esp-idf/components/soc/esp32/include/soc/i2s_reg.h \
+ /home/taoyeah/esp/esp-idf/components/driver/include/driver/periph_ctrl.h \
+ /home/taoyeah/esp/esp-idf/components/soc/esp32/include/soc/dport_reg.h \
+ /home/taoyeah/esp/esp-idf/components/soc/esp32/include/soc/dport_access.h \
+ /home/taoyeah/esp/esp-idf/components/esp32/include/esp_dport_access.h \
+ /home/taoyeah/esp/esp-idf/components/soc/esp32/include/soc/uart_reg.h \
+ /home/taoyeah/esp/esp-idf/components/esp32/include/xtensa/xtruntime.h \
+ /home/taoyeah/esp/esp-idf/components/esp32/include/xtensa/config/core.h \
+ /home/taoyeah/esp/esp-idf/components/esp32/include/xtensa/hal.h \
+ /home/taoyeah/esp/esp-idf/components/esp32/include/xtensa/xtensa-versions.h \
+ /home/taoyeah/esp/esp-idf/components/esp32/include/xtensa/config/core-matmap.h \
+ /home/taoyeah/esp/esp-idf/components/esp32/include/xtensa/config/tie.h \
+ /home/taoyeah/esp/esp-idf/components/esp32/include/xtensa/config/specreg.h \
+ /home/taoyeah/esp/esp-idf/components/esp32/include/xtensa/corebits.h \
+ /home/taoyeah/esp/esp-idf/components/esp32/include/xtensa/xtruntime-core-state.h \
+ /home/taoyeah/esp/esp-idf/components/esp32/include/xtensa/xtruntime-frames.h \
+ /home/taoyeah/esp/esp-idf/components/soc/esp32/include/soc/periph_defs.h \
+ /home/taoyeah/esp/esp-idf/components/esp32/include/xtensa/core-macros.h \
+ /home/taoyeah/esp/esp-idf/components/bootloader_support/include/bootloader_clock.h \
+ /home/taoyeah/esp/esp-idf/components/driver/include/driver/spi_common.h \
+ /home/taoyeah/esp/esp-idf/components/esp32/include/rom/lldesc.h \
+ /home/taoyeah/esp/esp-idf/components/esp32/include/rom/queue.h \
+ /home/taoyeah/esp/esp-idf/components/soc/include/soc/spi_periph.h \
+ /home/taoyeah/esp/esp-idf/components/soc/esp32/include/soc/spi_pins.h \
+ /home/taoyeah/esp/esp-idf/components/soc/esp32/include/soc/spi_reg.h \
+ /home/taoyeah/esp/esp-idf/components/soc/esp32/include/soc/spi_struct.h \
+ /home/taoyeah/esp/esp-idf/components/soc/esp32/include/soc/gpio_sig_map.h
+
+/home/taoyeah/esp/esp-idf/components/newlib/include/stdint.h:
+
+/home/taoyeah/esp/esp-idf/components/newlib/include/machine/_default_types.h:
+
+/home/taoyeah/esp/esp-idf/components/newlib/include/sys/features.h:
+
+/home/taoyeah/esp/esp-idf/components/newlib/include/sys/_intsup.h:
+
+/home/taoyeah/esp/esp-idf/components/newlib/include/sys/cdefs.h:
+
+/home/taoyeah/esp/esp-idf/components/newlib/include/sys/time.h:
+
+/home/taoyeah/esp/esp-idf/components/newlib/include/_ansi.h:
+
+/home/taoyeah/esp/esp-idf/components/newlib/include/newlib.h:
+
+/home/taoyeah/esp/esp-idf/components/newlib/include/sys/config.h:
+
+/home/taoyeah/esp/esp-idf/components/newlib/include/machine/ieeefp.h:
+
+/home/taoyeah/esp/esp-idf/components/esp32/include/xtensa/config/core-isa.h:
+
+/home/taoyeah/esp/esp-idf/components/newlib/include/sys/types.h:
+
+/home/taoyeah/esp/esp-idf/components/newlib/include/machine/_types.h:
+
+/home/taoyeah/esp/esp-idf/components/newlib/include/sys/_types.h:
+
+/home/taoyeah/esp/esp-idf/components/newlib/include/sys/lock.h:
+
+/home/taoyeah/esp/esp-idf/components/newlib/include/machine/types.h:
+
+/home/taoyeah/esp/esp-idf/components/newlib/include/sys/sched.h:
+
+/home/taoyeah/esp/esp-idf/components/newlib/include/sys/param.h:
+
+/home/taoyeah/esp/esp-idf/components/newlib/include/sys/syslimits.h:
+
+/home/taoyeah/esp/esp-idf/components/newlib/include/machine/endian.h:
+
+/home/taoyeah/esp/esp-idf/components/newlib/include/machine/param.h:
+
+/home/taoyeah/esp/esp-idf/examples/peripherals/can/can_network/can_network_master/build/include/sdkconfig.h:
+
+/home/taoyeah/esp/esp-idf/components/esp32/include/esp_attr.h:
+
+/home/taoyeah/esp/esp-idf/components/log/include/esp_log.h:
+
+/home/taoyeah/esp/esp-idf/components/esp32/include/rom/ets_sys.h:
+
+/home/taoyeah/esp/esp-idf/components/soc/esp32/include/soc/soc.h:
+
+/home/taoyeah/esp/esp-idf/components/esp32/include/esp_assert.h:
+
+/home/taoyeah/esp/esp-idf/components/newlib/platform_include/assert.h:
+
+/home/taoyeah/esp/esp-idf/components/newlib/include/stdlib.h:
+
+/home/taoyeah/esp/esp-idf/components/newlib/include/_ansi.h:
+
+/home/taoyeah/esp/esp-idf/components/newlib/include/sys/reent.h:
+
+/home/taoyeah/esp/esp-idf/components/newlib/include/machine/stdlib.h:
+
+/home/taoyeah/esp/esp-idf/components/newlib/include/alloca.h:
+
+/home/taoyeah/esp/esp-idf/components/newlib/include/assert.h:
+
+/home/taoyeah/esp/esp-idf/components/log/include/esp_log_internal.h:
+
+/home/taoyeah/esp/esp-idf/components/esp32/include/esp_clk.h:
+
+/home/taoyeah/esp/esp-idf/components/esp32/esp_clk_internal.h:
+
+/home/taoyeah/esp/esp-idf/components/esp32/include/rom/uart.h:
+
+/home/taoyeah/esp/esp-idf/components/esp32/include/esp_types.h:
+
+/home/taoyeah/esp/esp-idf/components/esp32/include/rom/ets_sys.h:
+
+/home/taoyeah/esp/esp-idf/components/soc/esp32/include/soc/uart_reg.h:
+
+/home/taoyeah/esp/esp-idf/components/soc/esp32/include/soc/soc.h:
+
+/home/taoyeah/esp/esp-idf/components/esp32/include/rom/rtc.h:
+
+/home/taoyeah/esp/esp-idf/components/soc/esp32/include/soc/rtc.h:
+
+/home/taoyeah/esp/esp-idf/components/soc/include/soc/rtc_wdt.h:
+
+/home/taoyeah/esp/esp-idf/components/soc/esp32/include/soc/rtc_cntl_reg.h:
+
+/home/taoyeah/esp/esp-idf/components/esp32/include/esp_err.h:
+
+/home/taoyeah/esp/esp-idf/components/newlib/include/stdio.h:
+
+/home/taoyeah/esp/esp-idf/components/newlib/include/sys/stdio.h:
+
+/home/taoyeah/esp/esp-idf/components/soc/esp32/include/soc/i2s_reg.h:
+
+/home/taoyeah/esp/esp-idf/components/driver/include/driver/periph_ctrl.h:
+
+/home/taoyeah/esp/esp-idf/components/soc/esp32/include/soc/dport_reg.h:
+
+/home/taoyeah/esp/esp-idf/components/soc/esp32/include/soc/dport_access.h:
+
+/home/taoyeah/esp/esp-idf/components/esp32/include/esp_dport_access.h:
+
+/home/taoyeah/esp/esp-idf/components/soc/esp32/include/soc/uart_reg.h:
+
+/home/taoyeah/esp/esp-idf/components/esp32/include/xtensa/xtruntime.h:
+
+/home/taoyeah/esp/esp-idf/components/esp32/include/xtensa/config/core.h:
+
+/home/taoyeah/esp/esp-idf/components/esp32/include/xtensa/hal.h:
+
+/home/taoyeah/esp/esp-idf/components/esp32/include/xtensa/xtensa-versions.h:
+
+/home/taoyeah/esp/esp-idf/components/esp32/include/xtensa/config/core-matmap.h:
+
+/home/taoyeah/esp/esp-idf/components/esp32/include/xtensa/config/tie.h:
+
+/home/taoyeah/esp/esp-idf/components/esp32/include/xtensa/config/specreg.h:
+
+/home/taoyeah/esp/esp-idf/components/esp32/include/xtensa/corebits.h:
+
+/home/taoyeah/esp/esp-idf/components/esp32/include/xtensa/xtruntime-core-state.h:
+
+/home/taoyeah/esp/esp-idf/components/esp32/include/xtensa/xtruntime-frames.h:
+
+/home/taoyeah/esp/esp-idf/components/soc/esp32/include/soc/periph_defs.h:
+
+/home/taoyeah/esp/esp-idf/components/esp32/include/xtensa/core-macros.h:
+
+/home/taoyeah/esp/esp-idf/components/bootloader_support/include/bootloader_clock.h:
+
+/home/taoyeah/esp/esp-idf/components/driver/include/driver/spi_common.h:
+
+/home/taoyeah/esp/esp-idf/components/esp32/include/rom/lldesc.h:
+
+/home/taoyeah/esp/esp-idf/components/esp32/include/rom/queue.h:
+
+/home/taoyeah/esp/esp-idf/components/soc/include/soc/spi_periph.h:
+
+/home/taoyeah/esp/esp-idf/components/soc/esp32/include/soc/spi_pins.h:
+
+/home/taoyeah/esp/esp-idf/components/soc/esp32/include/soc/spi_reg.h:
+
+/home/taoyeah/esp/esp-idf/components/soc/esp32/include/soc/spi_struct.h:
+
+/home/taoyeah/esp/esp-idf/components/soc/esp32/include/soc/gpio_sig_map.h:
+/home/taoyeah/esp/esp-idf/components/esp32/./clk.c:
