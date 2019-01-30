@@ -1,0 +1,370 @@
+include /home/taoyeah/esp/esp-aliyun/iotkit-embedded/build-rules/funcs.mk
+
+SHELL   := bash
+Q       ?= @
+VPATH   := /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/log /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/system /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/sdk-impl /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/mqtt /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/ota /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/cm /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dev_reset /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/coap/local /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/dev_bind 
+
+EXT_IFLAGS  := \
+    -Ibuild-rules/misc \
+    -Iinclude \
+    -Iinclude/exports \
+    -Iinclude/imports \
+    -Isrc/infra \
+    -Isrc/infra/utils \
+    -Isrc/infra/utils/misc \
+    -Isrc/infra/utils/digest \
+    -Isrc/infra/system \
+    -Isrc/infra/system/facility \
+    -Isrc/infra/log \
+
+IFLAGS  := \
+    -Isrc/infra/utils \
+    -Isrc/infra/utils/misc \
+    -Isrc/infra/utils/digest \
+    -Isrc/infra/log \
+    -Isrc/infra/system \
+    -Isrc/infra/system/facility \
+    -Isrc/sdk-impl \
+    -Isrc/sdk-impl/deprecated_linkkit \
+    -Isrc/protocol/mqtt \
+    -Isrc/protocol/mqtt/client \
+    -Isrc/protocol/mqtt/MQTTPacket \
+    -Isrc/services/ota \
+    -Isrc/services/ota/impl \
+    -Isrc/services/ota/prot \
+    -Isrc/services/linkkit/cm \
+    -Isrc/services/linkkit/cm/include \
+    -Isrc/services/linkkit/dm \
+    -Isrc/services/linkkit/dm/server \
+    -Isrc/services/linkkit/dm/client \
+    -Isrc/services/linkkit/dev_reset \
+    -Isrc/protocol/coap/local \
+    -Isrc/services/awss \
+    -Isrc/services/dev_bind \
+    -Isrc/services/dev_bind/os \
+    -Isrc/services/dev_bind/os/product \
+    -Iinclude \
+    -Iinclude/exports \
+    -Iinclude/imports \
+    -Isrc/ref-impl/tls \
+    -Isrc/ref-impl/tls/include \
+    -Isrc/ref-impl/tls/include/mbedtls \
+    -Isrc/ref-impl/tls/library \
+    -Isrc/security/pro \
+    -Isrc/security/pro/crypto \
+    -Isrc/security/pro/itls \
+    -Isrc/security/pro/km \
+    -Isrc/security/pro/id2 \
+    -Isrc/tools/linkkit_tsl_convert/include \
+    -Ibuild-rules \
+    -Ibuild-rules/misc \
+    -Ibuild-rules/docs \
+    -Ibuild-rules/scripts \
+    -Ibuild-rules/hooks \
+    -Isrc/ref-impl/hal \
+    -Isrc/ref-impl/hal/ssl \
+    -Isrc/ref-impl/hal/ssl/itls \
+    -Isrc/ref-impl/hal/ssl/mbedtls \
+    -Isrc/ref-impl/hal/ssl/openssl \
+    -Isrc/ref-impl/hal/os \
+    -Isrc/ref-impl/hal/os/macos \
+    -Isrc/ref-impl/hal/os/ubuntu \
+    -Isrc/ref-impl/hal/os/win7 \
+
+CFLAGS  := \
+     \
+    -Iexamples \
+    -Iexamples/linkkit \
+    -Itests \
+    -DFORCE_SSL_VERIFY \
+    -DCOAP_SERV_MULTITHREAD \
+    -DAWSS_SUPPORT_PHONEASAP \
+    -DAWSS_SUPPORT_ROUTER \
+    -DAWSS_SUPPORT_SMARTCONFIG \
+    -DAWSS_SUPPORT_ZEROCONFIG \
+    -DDEVICE_MODEL_ENABLED \
+    -DDEV_BIND_ENABLED \
+    -DMQTT_COMM_ENABLED \
+    -DMQTT_DIRECT \
+    -DOTA_ENABLED \
+    -DSUPPORT_TLS \
+    -DWIFI_PROVISION_ENABLED \
+    -DAWSS_SUPPORT_APLIST \
+    -DAWSS_SUPPORT_SMARTCONFIG \
+    -DAWSS_SUPPORT_SMARTCONFIG_WPS \
+    -DAWSS_SUPPORT_AHA \
+    -DAWSS_SUPPORT_ADHA \
+    -DOTA_SIGNAL_CHANNEL=1 \
+    -DBOARD_ESP32 \
+    -u \
+    call_user_start \
+    -fno-inline-functions \
+    -ffunction-sections \
+    -fdata-sections \
+    -mlongcalls \
+    -DESPOS_FOR_ESP32 \
+    -Wl,-static \
+    -DXT_USE_THREAD_SAFE_CLIB=0 \
+    -Os \
+    -DCONFIG_HTTP_AUTH_TIMEOUT=500 \
+    -DCONFIG_MID_HTTP_TIMEOUT=500 \
+    -DCONFIG_GUIDER_AUTH_TIMEOUT=500 \
+    -DCONFIG_MQTT_TX_MAXLEN=640 \
+    -DCONFIG_MQTT_RX_MAXLEN=1200 \
+    -DBOARD_ESP32 \
+    -u \
+    call_user_start \
+    -fno-inline-functions \
+    -ffunction-sections \
+    -fdata-sections \
+    -mlongcalls \
+    -DESPOS_FOR_ESP32 \
+    -Wl,-static \
+    -DXT_USE_THREAD_SAFE_CLIB=0 \
+    -Os \
+    -DCONFIG_HTTP_AUTH_TIMEOUT=500 \
+    -DCONFIG_MID_HTTP_TIMEOUT=500 \
+    -DCONFIG_GUIDER_AUTH_TIMEOUT=500 \
+    -DCONFIG_MQTT_TX_MAXLEN=640 \
+    -DCONFIG_MQTT_RX_MAXLEN=1200 \
+
+STAMP_LCOV  := /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/.coverage.done
+
+.PHONY: all
+all: /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/usr/lib/libiot_sdk.a  
+	$(Q)cp -rf include/iot_import.h include/iot_export.h include/imports include/exports  /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/usr/include 2>/dev/null || true
+	@rm -f *.gcda *.gcno $$(find /home/taoyeah/esp/esp-aliyun/iotkit-embedded/build-rules -name "*.o")
+
+	@if [ "$(WITH_LCOV)" = "1" ]; then \
+	    mkdir -p $$(dirname $(STAMP_LCOV)); \
+	    touch $(STAMP_LCOV); \
+	else \
+	    rm -f $(STAMP_LCOV); \
+	fi
+
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/misc/json_parser.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/misc/string_utils.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/misc/json_token.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/misc/utils_epoch_time.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/misc/utils_event.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/misc/utils_httpc.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/misc/mem_stats.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/misc/utils_timer.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/misc/lite-cjson.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/misc/utils_net.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/digest/utils_hmac.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/digest/utils_md5.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/digest/utils_sha256.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/digest/utils_base64.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/digest/utils_sha1.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/log/iotx_log.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/system/aos_support.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/system/guider.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/system/report.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/system/device.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/system/event.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/system/ca.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/system/facility/fac_string.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/sdk-impl/sdk-impl.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/sdk-impl/impl_linkkit.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/sdk-impl/impl_logpost.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/sdk-impl/impl_dynreg.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/sdk-impl/deprecated_linkkit/impl_solo.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/sdk-impl/deprecated_linkkit/impl_ntp.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/sdk-impl/deprecated_linkkit/impl_gateway.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/mqtt/client/mqtt_client.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/mqtt/MQTTPacket/MQTTPacket.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/mqtt/MQTTPacket/MQTTSerializePublish.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/mqtt/MQTTPacket/MQTTSubscribeClient.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/mqtt/MQTTPacket/MQTTDeserializePublish.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/mqtt/MQTTPacket/MQTTUnsubscribeClient.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/mqtt/MQTTPacket/MQTTConnectClient.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/ota/iotx_ota.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/ota/impl/ota_fetch.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/ota/impl/ota_lib.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/cm/iotx_cm.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/cm/iotx_cm_coap.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/cm/iotx_cm_mqtt.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/dm_api.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/dm_cota.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/dm_fota.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/dm_ipc.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/dm_manager.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/dm_message.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/dm_message_cache.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/dm_msg_process.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/dm_opt.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/dm_ota.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/dm_shadow.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/dm_tsl_alink.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/dm_utils.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/server/dm_server_adapter.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/server/dm_server.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/client/dm_client_adapter.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/client/dm_client.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dev_reset/awss_reset.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/coap/local/CoAPSerialize.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/coap/local/CoAPObserve.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/coap/local/CoAPNetwork.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/coap/local/CoAPPlatform.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/coap/local/CoAPExport.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/coap/local/CoAPResource.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/coap/local/CoAPServer.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/coap/local/CoAPDeserialize.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/coap/local/CoAPMessage.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/awss_wifimgr.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/awss_main.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/zconfig_ieee80211.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/awss_enrollee.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/awss_adha.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/awss_aplist.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/awss_smartconfig.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/zconfig_vendor_common.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/zconfig_utils.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/awss_aha.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/zconfig_protocol.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/awss.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/awss_crypt.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/awss_wps.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/awss_ht40.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/awss_registrar.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/dev_bind/awss_bind.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/dev_bind/awss_event.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/dev_bind/awss_notify.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/dev_bind/awss_timer.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/dev_bind/passwd.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/dev_bind/awss_cmp_coap.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/dev_bind/awss_cmp_mqtt.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/dev_bind/sha256.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/dev_bind/awss_report.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/dev_bind/awss_packet.d
+sinclude /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/dev_bind/os/os_misc.d
+
+/home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/usr/lib/libiot_sdk.a: \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/misc/json_parser.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/misc/string_utils.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/misc/json_token.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/misc/utils_epoch_time.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/misc/utils_event.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/misc/utils_httpc.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/misc/mem_stats.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/misc/utils_timer.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/misc/lite-cjson.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/misc/utils_net.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/digest/utils_hmac.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/digest/utils_md5.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/digest/utils_sha256.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/digest/utils_base64.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/utils/digest/utils_sha1.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/log/iotx_log.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/system/aos_support.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/system/guider.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/system/report.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/system/device.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/system/event.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/system/ca.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/infra/system/facility/fac_string.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/sdk-impl/sdk-impl.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/sdk-impl/impl_linkkit.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/sdk-impl/impl_logpost.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/sdk-impl/impl_dynreg.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/sdk-impl/deprecated_linkkit/impl_solo.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/sdk-impl/deprecated_linkkit/impl_ntp.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/sdk-impl/deprecated_linkkit/impl_gateway.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/mqtt/client/mqtt_client.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/mqtt/MQTTPacket/MQTTPacket.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/mqtt/MQTTPacket/MQTTSerializePublish.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/mqtt/MQTTPacket/MQTTSubscribeClient.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/mqtt/MQTTPacket/MQTTDeserializePublish.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/mqtt/MQTTPacket/MQTTUnsubscribeClient.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/mqtt/MQTTPacket/MQTTConnectClient.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/ota/iotx_ota.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/ota/impl/ota_fetch.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/ota/impl/ota_lib.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/cm/iotx_cm.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/cm/iotx_cm_coap.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/cm/iotx_cm_mqtt.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/dm_api.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/dm_cota.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/dm_fota.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/dm_ipc.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/dm_manager.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/dm_message.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/dm_message_cache.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/dm_msg_process.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/dm_opt.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/dm_ota.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/dm_shadow.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/dm_tsl_alink.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/dm_utils.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/server/dm_server_adapter.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/server/dm_server.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/client/dm_client_adapter.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dm/client/dm_client.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/linkkit/dev_reset/awss_reset.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/coap/local/CoAPSerialize.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/coap/local/CoAPObserve.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/coap/local/CoAPNetwork.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/coap/local/CoAPPlatform.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/coap/local/CoAPExport.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/coap/local/CoAPResource.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/coap/local/CoAPServer.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/coap/local/CoAPDeserialize.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/protocol/coap/local/CoAPMessage.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/awss_wifimgr.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/awss_main.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/zconfig_ieee80211.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/awss_enrollee.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/awss_adha.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/awss_aplist.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/awss_smartconfig.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/zconfig_vendor_common.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/zconfig_utils.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/awss_aha.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/zconfig_protocol.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/awss.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/awss_crypt.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/awss_wps.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/awss_ht40.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/awss/awss_registrar.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/dev_bind/awss_bind.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/dev_bind/awss_event.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/dev_bind/awss_notify.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/dev_bind/awss_timer.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/dev_bind/passwd.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/dev_bind/awss_cmp_coap.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/dev_bind/awss_cmp_mqtt.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/dev_bind/sha256.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/dev_bind/awss_report.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/dev_bind/awss_packet.o \
+    /home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O/src/services/dev_bind/os/os_misc.o \
+
+	$(Q)mkdir -p $$(dirname $@)
+	$(Q)$(call Brief_Log,"AR",$$(basename $@),"...")
+	$(Q)xtensa-esp32-elf-ar -rcs $@ $^ 2>/dev/null
+
+%.o:
+	$(Q)$(call Brief_Log,"CC",$$(basename $@),"...")
+	$(Q)mkdir -p $$(dirname $@)
+	$(Q)S=$$(echo $@|sed 's,/home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O,/home/taoyeah/esp/esp-aliyun/iotkit-embedded,1'); \
+    xtensa-esp32-elf-gcc -c \
+        -o $@ \
+        $(CFLAGS) \
+        $(IFLAGS) \
+        $${S//.o/.c}
+
+%.d:
+	@\
+( \
+	D=$$(dirname $@|sed 's,/home/taoyeah/esp/esp-aliyun/iotkit-embedded/.O,/home/taoyeah/esp/esp-aliyun/iotkit-embedded,1'); \
+	F=$$(basename $@); \
+	F=$${F/.d/.c}; \
+	mkdir -p $$(dirname $@); \
+	xtensa-esp32-elf-gcc -MM -I$(CURDIR) \
+	    $(IFLAGS) \
+	    $(CFLAGS) \
+	$${D}/$${F} > $@.$$$$; \
+	sed -i 's!$(shell basename $*)\.o[ :]!$*.o:!1' $@.$$$$; \
+	mv $@.$$$$ $@; \
+)
+
