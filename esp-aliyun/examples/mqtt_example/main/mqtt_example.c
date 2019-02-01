@@ -14,10 +14,10 @@
 #include "esp_log.h"
 
 // #define PRODUCT_KEY             NULL
-#define PRODUCT_KEY             "a1dD6lmYxB1"
-#define PRODUCT_SECRET          "Skmt7xl9K8YRE7Yj"
-#define DEVICE_NAME             "JD430"
-#define DEVICE_SECRET           "0Ih6TBgRThHT8iKBzZrlLmi9jVxIbIeO"
+#define PRODUCT_KEY             "a1F29g9p65N"
+#define PRODUCT_SECRET          "KXr7DFtDBeXz3CHE"
+#define DEVICE_NAME             "FD124-CA"
+#define DEVICE_SECRET           "Z2QdmjLAk34kgYu8I5HmzJfQlc1bSaXH"
       
 /* These are pre-defined topics */
 #define TOPIC_UPDATE            "/"PRODUCT_KEY"/"DEVICE_NAME"/user/update"
@@ -27,7 +27,7 @@
 
 #define MQTT_MSGLEN             (1024)
 //#define PROPERTY_PAYLOAD_FORMAT         "{\"Data\": \"%s\", \"Status\": %d}"
-#define PROPERTY_PAYLOAD_FORMAT         "{\"method\":\"thing.event.property.post\",\"id\":\"123\",\"params\":{\"Status\":%d},\"version\":\"1.0\"}"
+#define PROPERTY_PAYLOAD_FORMAT         "{\"method\":\"thing.event.property.post\",\"id\":\"123\",\"params\":{\"status_word\":%04x, \"operation_mode_buff\":%d, \"temp_device\":%d, \"speed_real\":%.2f, \"pos_actual\":%d, \"i_q_b\":%.2f, \"driver_iit_real\":%.2f, \"motor_iit_real\":%.2f },\"version\":\"1.0\"}"
 
 #define EXAMPLE_TRACE(fmt, ...)  \
     do { \
@@ -145,7 +145,7 @@ int mqtt_client(void)
     iotx_conn_info_pt pconn_info;
     iotx_mqtt_param_t mqtt_params;
     iotx_mqtt_topic_info_t topic_msg;
-    char msg_pub[128];
+    char msg_pub[256];
 
     /* Device AUTH */
     if (0 != IOT_SetupConnInfo(PRODUCT_KEY, DEVICE_NAME, DEVICE_SECRET, (void **)&pconn_info)) {
@@ -213,7 +213,7 @@ int mqtt_client(void)
     HAL_SleepMs(2000);
 
     /* Initialize topic information */
-    memset(msg_pub, 0x0, 128);
+    memset(msg_pub, 0x0, 256);
     strcpy(msg_pub, "data: hello! start!");
     memset(&topic_msg, 0x0, sizeof(iotx_mqtt_topic_info_t));
     topic_msg.qos = IOTX_MQTT_QOS0;
@@ -231,10 +231,10 @@ int mqtt_client(void)
 
     do {
             cnt++;
-            msg_len = snprintf(msg_pub, sizeof(msg_pub), PROPERTY_PAYLOAD_FORMAT, cnt);
+            msg_len = snprintf(msg_pub, sizeof(msg_pub), PROPERTY_PAYLOAD_FORMAT, motor_rx_globel.status_word.all, motor_rx_globel.operation_mode_buff, motor_rx_globel.temp_device.all, motor_rx_globel.speed_real.all/2731.0, motor_rx_globel.pos_actual.all, motor_rx_globel.i_q_b.all/45.5, motor_rx_globel.driver_iit_real.all/8.5, motor_rx_globel.motor_iit_real.all/5.1);
 
-    topic_msg.payload = (void *)msg_pub;
-    topic_msg.payload_len = strlen(msg_pub);
+    		topic_msg.payload = (void *)msg_pub;
+    		topic_msg.payload_len = strlen(msg_pub);
 
             rc = IOT_MQTT_Publish(pclient, TOPIC_DATA, &topic_msg);
             if (rc < 0) {
@@ -245,7 +245,7 @@ int mqtt_client(void)
             EXAMPLE_TRACE("packet-id=%u, publish topic msg=%s", (uint32_t)rc, msg_pub);
 
         /* handle the MQTT packet received from TCP or SSL connection */
-        IOT_MQTT_Yield(pclient, 1000);
+        IOT_MQTT_Yield(pclient, 2000);
 
         /* infinite loop if running with 'loop' argument */
         if (user_argc >= 2 && !strcmp("loop", user_argv[1])) {
@@ -253,8 +253,8 @@ int mqtt_client(void)
             // cnt = 0;
         }
         ESP_LOGI(TAG, "min:%u heap:%u", esp_get_minimum_free_heap_size(), esp_get_free_heap_size());
-	HAL_SleepMs(10000);
-    } while (cnt);
+		//HAL_SleepMs(1000);
+    } while (1);
 
     IOT_MQTT_Yield(pclient, 200);
 

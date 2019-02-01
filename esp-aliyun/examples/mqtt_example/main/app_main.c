@@ -131,5 +131,7 @@ void app_main()
 
     // SNTP service uses LwIP, please allocate large stack space.
     xTaskCreate(mqtt_example, "mqtt_example", 10240, NULL, 5, NULL);
+	canopen_task();
+
 }
 
